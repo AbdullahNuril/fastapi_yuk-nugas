@@ -25,7 +25,7 @@ async def favicon():
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080"],  # Sesuaikan dengan URL frontend Anda
+    allow_origins=["*"],  # Sesuaikan dengan URL frontend Anda
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
