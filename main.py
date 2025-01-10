@@ -7,6 +7,7 @@ from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from pymongo import MongoClient, ASCENDING
+from fastapi.middleware.cors import CORSMiddleware
 import os
 import uvicorn
 from bson.objectid import ObjectId
@@ -21,6 +22,14 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
     return FileResponse("static/icon.ico")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8080"],  # Sesuaikan dengan URL frontend Anda
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Konfigurasi Basis Data
 client = MongoClient("mongodb+srv://14nuril04:Subscribe1434@cluster0.ocgjaaf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
